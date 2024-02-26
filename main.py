@@ -53,7 +53,13 @@ def add_watermark(list_of_paths, watermark, position_text):
     aspect_ratio = watermark_width / watermark_height
 
     for base_image in list_of_im:
-        output_image_path = f"converted_photos/{random.randint(0,100)}.jpg"
+
+        # Extract the original filename from the full path
+        original_filename = os.path.splitext(os.path.basename(base_image.filename))[0]
+
+        print(base_image.filename)
+        # Construct the new filename with the "watermarked" suffix
+        output_image_path = f"converted_photos/{original_filename}_watermarked.jpg"
 
         # Resize watermark to fit on the base image
         width, height = base_image.size
